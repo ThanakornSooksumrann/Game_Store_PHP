@@ -1,0 +1,103 @@
+<?php
+    require('query.php');
+    $add_admin = new query();
+    if(isset($_REQUEST['add'])){
+        if($_POST['admin_pass'] == $_POST['admin_pass_true']){
+            $sql = $add_admin->add_admin($_FILES['pic_admin'], $_POST['admin_name'], $_POST['admin_pass'], $_POST['f_admin'], $_POST['l_admin'], $_POST['phone_admin'], $_POST['age']);
+            if($sql){
+                echo "<script>alert('สมัครสำเร็จ')
+                window.location.href='LoginAdmin.php';
+                </script>";
+            } else {
+                echo "<script>alert('สมัครไม่สำเร็จ')</script>";
+            }
+        }
+        else {
+            echo "<script>alert('รหัสผ่านไม่ตรงกัน')</script>";
+        }
+    }
+?>
+<html>
+<?php include('Head.php'); ?>
+<?php include('Font.php'); ?>
+    <body>
+    <?php include('Navbar.php'); ?>
+    <div class="container-fluid">
+        <div class="row">
+                <div class="col-sm-12">
+                    <div class="container">
+                        <div class="card-deck mt-5 mb-5">
+                        <div class="card bg-light">
+                        <div class="card-body text-dark">
+                    <div class="row">
+                        <div class="col-12 mt-3 mb-3">
+                            <h1><b><span class="badge badge-warning text-dark">สมัครเป็นผู้ดูแลเว็บ</span></b></h1>
+                        </div>
+                    </div>
+                    <form  enctype="multipart/form-data" method="POST" class="was-validated">
+                        <div class="row">
+                            <div class="col-6 mb-3 form-group">
+                                <label for="f_admin"><b>ชื่อจริง:</b></label>
+                                <input type="text" class="form-control" id="f_admin" placeholder="กรุณาใส่ชื่อจริง" name="f_admin" required>
+                                <div class="valid-feedback">ถูกต้อง</div>
+                                <div class="invalid-feedback">กรุณากรอกข้อมูลในช่องนี้</div>
+                            </div>
+                            <div class="col-6 mb-3 form-group">
+                                <label for="l_admin"><b>นามสกุล:</b></label>
+                                <input type="text" class="form-control" id="l_admin" placeholder="กรุณาใส่นามสกุล" name="l_admin" required>
+                                <div class="valid-feedback">ถูกต้อง</div>
+                                <div class="invalid-feedback">กรุณากรอกข้อมูลในช่องนี้</div>
+                            </div>
+                            <div class="col-6 mb-3 form-group">
+                                <label for="phone_admin"><b>เบอร์โทร:</b></label>
+                                <input type="text" class="form-control" id="phone_admin" placeholder="กรุณาใส่เบอร์โทร" name="phone_admin" required>
+                                <div class="valid-feedback">ถูกต้อง</div>
+                                <div class="invalid-feedback">กรุณากรอกข้อมูลในช่องนี้</div>
+                            </div>
+                            <div class="col-6 mb-3 form-group">
+                                <label for="age"><b>อายุ:</b></label>
+                                <input type="number" class="form-control" id="age" placeholder="กรุณาใส่อายุ" name="age" required>
+                                <div class="valid-feedback">ถูกต้อง</div>
+                                <div class="invalid-feedback">กรุณากรอกข้อมูลในช่องนี้</div>
+                            </div>
+                            <div class="col-4 mb-3 form-group">
+                                <label for="admin_name"><b>ชื่อผู้ดูแล:</b></label>
+                                <input type="text" class="form-control" id="admin_name" placeholder="กรุณาใส่ชื่อผู้ใช้" name="admin_name" required>
+                                <div class="valid-feedback">ถูกต้อง</div>
+                                <div class="invalid-feedback">กรุณากรอกข้อมูลในช่องนี้</div>
+                            </div>
+                            <div class="col-4 mb-3 form-group">
+                                <label for="admin_pass"><b>รหัสผู้ดูแล:</b></label>
+                                <input type="text" class="form-control" id="admin_pass" placeholder="กรุณาใส่รหัสผู้ใช้" name="admin_pass" required>
+                                <div class="valid-feedback">ถูกต้อง</div>
+                                <div class="invalid-feedback">กรุณากรอกข้อมูลในช่องนี้</div>
+                            </div>
+                            <div class="col-4 mb-3 form-group">
+                                <label for="admin_pass_true"><b>ยืนยันรหัสผ่าน:</b></label>
+                                <input type="text" class="form-control" id="admin_pass_true" placeholder="กรุณาใส่รหัสผู้ใช้อีกครั้ง" name="admin_pass_true" required>
+                                <div class="valid-feedback">ถูกต้อง</div>
+                                <div class="invalid-feedback">กรุณากรอกข้อมูลในช่องนี้</div>
+                            </div>
+                            <div class="col-12 mb-3 form-group">
+                                <label for="pic_admin"><b>อัปโหลดรูปโปรไฟล์</b></label>
+                                <input type="file" id="pic_admin" value="empty.png" name="pic_admin" class="form-control-file border">
+                            </div>
+                            <div class="col-6 d-flex justify-content">
+                                <div class="btn-group">
+                                    <button type="submit" name="add" class="btn btn-success">เพิ่มผู้ดูเเลเว็บ</button>
+                                    <button type="reset" class="btn btn-danger">ลบทั้งหมด</button>
+                                    <A href="LoginAdmin.php" class="btn btn-warning">ยกเลิก</A>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    <?php include('Foot.php'); ?>
+    </body>
+</html>
